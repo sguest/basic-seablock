@@ -1,0 +1,14 @@
+{
+    "extends": "factorio-types/tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "dist",
+        "rootDir": "src",
+    },
+    "tstl": {
+        "noResolvePaths": ["noise"]
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}
