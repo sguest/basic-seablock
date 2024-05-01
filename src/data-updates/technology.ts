@@ -20,6 +20,8 @@ techRemoveRecipe('bob-greenhouse', 'bob-basic-greenhouse-cycle');
 techRemoveRecipe('oil-processing', 'basic-oil-processing');
 techRemoveRecipe('oil-processing', 'pumpjack');
 techRemoveRecipe('advanced-oil-processing', 'advanced-oil-processing');
+techRemoveRecipe('fluid-handling', 'fill-crude-oil-barrel');
+techRemoveRecipe('fluid-handling', 'empty-crude-oil-barrel');
 
 techAddRecipe('uranium-processing', 'uranium-from-sediment');
 techAddRecipe('coal-liquefaction', 'crude-coal-liquefaction');

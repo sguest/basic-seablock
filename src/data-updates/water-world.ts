@@ -6,6 +6,7 @@ data.extend([{
     type: 'noise-expression',
     name: 'seablock-water-world',
     intended_property: 'elevation',
+    // Inspired by "Factories in Tight Spaces" mod
     expression: noise.define_noise_function((x: number, y: number, tile: any, map: any) =>
         10 * (less_or_equal(absolute_value(x), 1) + less_or_equal(absolute_value(y), 1)) - 20
     ),

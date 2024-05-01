@@ -4,14 +4,22 @@ data.extend([
     name: 'seablock-electrolyzer',
 },
 {
+    type: 'recipe-category',
+    name: 'hand-crafting',
+},
+{
     type: 'recipe',
     name: 'wood-to-coal',
+    main_product: '',
+    icon: '__base__/graphics/icons/coal-3.png',
+    subgroup: 'raw-resource',
+    icon_size: 64,
     category: 'smelting',
     energy_required: 3.2,
     ingredients: [[ 'wood', 1 ]],
     enabled: true,
     result: 'coal',
-    result_count: 2,
+    result_count: 4,
 },
 {
     type: 'recipe',
@@ -76,10 +84,10 @@ data.extend([
     type: 'recipe',
     name: 'uranium-from-sediment',
     category: 'crafting-with-fluid',
-    energy_required: 2,
+    energy_required: 1,
     enabled: false,
     ingredients: [
-        { type: 'item', name: 'sediment', amount: 5 },
+        { type: 'item', name: 'sediment', amount: 4 },
         { type: 'fluid', name: 'sulfuric-acid', amount: 5 }
     ],
     result: 'uranium-ore',
@@ -87,7 +95,12 @@ data.extend([
 {
     type: 'recipe',
     name: 'crude-coal-liquefaction',
+    main_product: '',
+    icon: '__base__/graphics/icons/fluid/coal-liquefaction.png',
+    icon_size: 64,
     category: 'chemistry',
+    subgroup: 'fluid-recipes',
+    order: 'z[heavy-oil]',
     energy_required: 10,
     enabled: false,
     ingredients: [
@@ -97,4 +110,17 @@ data.extend([
     results: [
         { type: 'fluid', name: 'heavy-oil', amount_min: 25, amount_max: 25 }
     ]
+},
+{
+    type: 'recipe',
+    name: 'driftwood-forage',
+    localised_name: [ 'recipe-name.driftwood-forage' ],
+    always_show_products: true,
+    category: 'hand-crafting',
+    enabled: true,
+    energy_required: 10,
+    ingredients: [],
+    result: 'wood',
+    allow_as_intermediate: false,
+    allow_decomposition: false,
 }])
