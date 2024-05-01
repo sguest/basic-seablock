@@ -1,0 +1,45 @@
+name: Create Release and Publish to Mod Portal
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+      - name: npm ci
+        run: npm ci
+      - name: npm run build
+        run: npm run build
+      - name: get mod version
+        id: mod_version
+        uses: ActionsTools/read-json-action@v1
+        with:
+          file_path: public/info.json
+          prop_path: version
+      - name: zip dist folder
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r BasicSeablock_${{ steps.mod_version.outputs.value }}.zip dist
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "BasicSeablock_${{ steps.mod_version.outputs.value }}.zip"
+          commit: main
+          tag: v${{ steps.mod_version.outputs.value }}
+          name: v${{ steps.mod_version.outputs.value }}
+          body: Basic Seablock release v${{ steps.mod_version.outputs.value }}
+      - name: Publish to Mod Portal
+        uses: mchangrh/factorio-mod-upload@v1
+        with:
+          mod-name: BasicSeablock
+        env:
+          FACTORIO_MODS_TOKEN: ${{ secrets.FACTORIO_API_TOKEN }}
+          FILENAME: ./BasicSeablock_${{ steps.mod_version.outputs.value }}.zip
