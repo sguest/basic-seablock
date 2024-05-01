@@ -6,10 +6,10 @@
   "scripts": {
     "build": "run-p build:*",
     "build:scripts": "tstl -p tsconfig.json",
-    "build:public": "cpx public/**/*.* dist",
+    "build:public": "cpx public/**/*.* dist/BasicSeablock",
     "dev": "run-p dev:*",
     "dev:scripts": "concurrently \"tstl -p tsconfig.json --watch",
-    "dev:public": "cpx public/**/*.* dist --watch",
+    "dev:public": "cpx public/**/*.* dist/BasicSeablock --watch",
     "clean": "rimraf dist"
   },
   "license": "MIT",
