@@ -3,7 +3,7 @@
     "extends": "factorio-types/tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "dist/BasicSeablock",
+        "outDir": "dist/SimpleSeablock",
         "rootDir": "src",
     },
     "tstl": {

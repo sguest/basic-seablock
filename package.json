@@ -1,15 +1,15 @@
 {
-  "name": "basic-seablock",
+  "name": "simple-seablock",
   "version": "0.1.0",
   "description": "Vanilla-based Factorio Seablock",
   "main": "index.js",
   "scripts": {
     "build": "run-p build:*",
     "build:scripts": "tstl -p tsconfig.json",
-    "build:public": "cpx public/**/*.* dist/BasicSeablock",
+    "build:public": "cpx public/**/*.* dist/SimpleSeablock",
     "dev": "run-p dev:*",
     "dev:scripts": "concurrently \"tstl -p tsconfig.json --watch",
-    "dev:public": "cpx public/**/*.* dist/BasicSeablock --watch",
+    "dev:public": "cpx public/**/*.* dist/SimpleSeablock --watch",
     "clean": "rimraf dist"
   },
   "license": "MIT",
