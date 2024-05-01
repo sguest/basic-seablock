@@ -1,10 +1,10 @@
 {
-    "name": "BasicSeablock",
+    "name": "SimpleSeablock",
     "version": "0.1.0",
-    "title": "Basic Seablock",
+    "title": "Simple Seablock",
     "author": "Aronson",
-    "contact": "https://github.com/sguest/basic-seablock/issues",
-    "homepage": "https://github.com/sguest/basic-seablock",
+    "contact": "https://github.com/sguest/simple-seablock/issues",
+    "homepage": "https://github.com/sguest/simple-seablock",
     "factorio_version": "1.1",
     "description": "Seablock based primarily around vanilla factorio techtree with minor changes",
     "dependencies": [

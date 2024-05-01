@@ -29,19 +29,19 @@ jobs:
       - name: Install zip
         uses: montudor/action-zip@v0.1.1
       - name: Zip output
-        run: zip -qq -r ../BasicSeablock_${{ steps.mod_version.outputs.value }}.zip BasicSeablock
+        run: zip -qq -r ../SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip SimpleSeablock
         working-directory: dist
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "BasicSeablock_${{ steps.mod_version.outputs.value }}.zip"
+          artifacts: "SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip"
           commit: main
           tag: v${{ steps.mod_version.outputs.value }}
           name: v${{ steps.mod_version.outputs.value }}
-          body: Basic Seablock release v${{ steps.mod_version.outputs.value }}
+          body: Simple Seablock release v${{ steps.mod_version.outputs.value }}
       - name: Publish to Mod Portal
         uses: mchangrh/factorio-mod-upload@v1
         with:
-          mod-name: BasicSeablock
+          mod-name: SimpleSeablock
         env:
           FACTORIO_MODS_TOKEN: ${{ secrets.FACTORIO_API_TOKEN }}
-          FILENAME: ./BasicSeablock_${{ steps.mod_version.outputs.value }}.zip
+          FILENAME: ./SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip

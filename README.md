@@ -1,4 +1,4 @@
-# Basic Seablock
+# Simple Seablock
 
 Start on an 1-tile island. Generate resources instead of mining them. Expand with landfill.
 
