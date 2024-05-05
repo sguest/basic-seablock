@@ -7,11 +7,9 @@
         "rootDir": "src",
     },
     "tstl": {
-        "noResolvePaths": ["noise"],
-        "luaLibImport": "none"
+        "luaLibImport": "none",
     },
     "include": [
-        "src/@types/*.d.ts",
         "src/**/*.ts"
     ]
 }

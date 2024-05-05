@@ -1,4 +1,4 @@
-require('./control/starting-items');
+import './control/starting-items';
 
 script.on_init(() => {
     if(remote.interfaces['freeplay'] !== null) {
