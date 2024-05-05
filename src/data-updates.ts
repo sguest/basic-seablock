@@ -1,4 +1,4 @@
-require('./data-updates/water-world');
-require('./data-updates/starting-recipes');
-require('./data-updates/technology');
-require('./data-updates/modules');
+import './data-updates/water-world';
+import './data-updates/starting-recipes';
+import './data-updates/technology';
+import './data-updates/modules';

@@ -1,10 +1,12 @@
+import { settingKeys } from '../setting-keys';
+
 script.on_event(defines.events.on_player_created, e => {
     let player = game.players[e.player_index];
 
     if(player.controller_type === defines.controllers.character)
     {
         const items = [
-            { name: 'landfill', count: 1000 },
+            { name: 'landfill', count: settings.startup[settingKeys.startingLandfillCount].value as number },
             { name: 'bob-greenhouse', count: 1 },
             { name: 'offshore-pump', count: 1 },
             { name: 'boiler', count: 1 },

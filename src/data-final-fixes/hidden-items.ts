@@ -1,13 +1,23 @@
-let hiddenItems = [
-    'burner-mining-drill',
-    'electric-mining-drill',
-    'pumpjack',
-    'basic-oil-processing',
-    'advanced-oil-processing',
-    'crude-oil',
-    'fill-crude-oil-barrel',
-    'empty-crude-oil-barrel',
-];
+import { settingKeys } from '../setting-keys';
+
+let hiddenItems: string[] = [];
+
+if(settings.startup[settingKeys.disableMiningDrills].value) {
+    table.insert(hiddenItems, 'burner-mining-drill');
+    table.insert(hiddenItems, 'electric-mining-drill');
+}
+
+if(settings.startup[settingKeys.disablePumpjacks].value) {
+    table.insert(hiddenItems, 'pumpjack');
+}
+
+if(settings.startup[settingKeys.disableCrudeOil].value) {
+    table.insert(hiddenItems, 'basic-oil-processing');
+    table.insert(hiddenItems, 'advanced-oil-processing');
+    table.insert(hiddenItems, 'crude-oil');
+    table.insert(hiddenItems, 'fill-crude-oil-barrel');
+    table.insert(hiddenItems, 'empty-crude-oil-barrel');
+}
 
 for(let itemName of hiddenItems) {
     let item = data.raw.item[itemName];

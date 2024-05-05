@@ -1,4 +1,5 @@
-const noise = require('noise');
+import * as noise from "noise";
+const define_noise_function = noise.define_noise_function;
 const absolute_value = noise.absolute_value;
 const less_or_equal = noise.less_or_equal;
 
@@ -7,8 +8,8 @@ data.extend([{
     name: 'seablock-water-world',
     intended_property: 'elevation',
     // Inspired by "Factories in Tight Spaces" mod
-    expression: noise.define_noise_function((x: number, y: number, tile: any, map: any) =>
-        10 * (less_or_equal(absolute_value(x), 1) + less_or_equal(absolute_value(y), 1)) - 20
+    expression: define_noise_function((x, y, tile, map) =>
+        noise.sub(noise.mul(10, noise.add(less_or_equal(absolute_value(x), 1), less_or_equal(absolute_value(y), 1))), 20)
     ),
 }])
 
