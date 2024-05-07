@@ -1,0 +1,18 @@
+{
+    "packages": { ".": {} },
+    "release-type": "node",
+    "changelog-sections": [
+        { "type": "feat", "section": "Features" },
+        { "type": "feature", "section": "Features" },
+        { "type": "fix", "section": "Bugfixes" },
+        { "type": "perf", "section": "Optimizations" },
+        { "type": "chore", "section": "Miscellaneous Chores", "hidden": true }
+    ],
+    "extra-files": [
+        {
+            "type": "json",
+            "path": "public/info.json",
+            "jsonpath": "$.version"
+        }
+    ]
+}

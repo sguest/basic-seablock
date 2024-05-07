@@ -19,6 +19,56 @@ jobs:
           app_id: ${{ secrets.TOKEN_APP_ID }}
           private_key: ${{ secrets.TOKEN_APP_SECRET }}
       - uses: google-github-actions/release-please-action@v4
+        id: release-please
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          release-type: node
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - uses: actions/checkout@v4
+        if: ${{ steps.release-please.outputs.prs_created }}
+        with:
+          ref: ${{ fromJson(steps.release-please.outputs.pr).headBranchName }}
+          token: ${{ steps.generate-token.outputs.token }}
+      - name: Generate mod changelog
+        uses: sguest/release-please-factorio-changelog@main
+        if: ${{ steps.release-please.outputs.prs_created }}
+        with:
+          output-file: ${{ github.workspace }}/public/changelog.txt
+      - name: Commit changelog
+        if: ${{ steps.release-please.outputs.prs_created }}
+        run: |
+          git config --global user.name sguest-app-token-generator
+          git config --global user.email sguest-app-token-generator@github.com
+          git commit -am "chore: updated changelog.txt"
+          git push
+      - name: Setup node
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/setup-node@v3
+      - name: npm ci
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: npm ci
+      - name: npm run build
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: npm run build
+      - name: get mod version
+        if: ${{ steps.release-please.outputs.release_created }}
+        id: mod_version
+        uses: ActionsTools/read-json-action@v1.0.5
+        with:
+          file_path: public/info.json
+          prop_path: version
+      - name: Install zip
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: montudor/action-zip@v0.1.1
+      - name: Zip output
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: zip -qq -r ../SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip SimpleSeablock
+        working-directory: dist
+      - uses: ncipollo/release-action@v1
+        if: ${{ steps.release-please.outputs.release_created }}
+        with:
+          artifacts: "SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip"
+          commit: main
+          tag: v${{ steps.mod_version.outputs.value }}
+          name: v${{ steps.mod_version.outputs.value }}
+          body: Simple Seablock release v${{ steps.mod_version.outputs.value }}
