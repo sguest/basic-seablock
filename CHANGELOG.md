@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/sguest/simple-seablock/compare/simple-seablock-v0.2.0...simple-seablock-v0.3.0) (2024-05-07)
+
+
+### Features
+
+* release-please stuff ([4786431](https://github.com/sguest/simple-seablock/commit/4786431785e2bd6f441f708d0c9fc95c0e0213fc))
+* test feature for release-please ([1a0c3c9](https://github.com/sguest/simple-seablock/commit/1a0c3c9d7c8cc91010fde14d03b993fdf43bda45))
+
 ## [0.2.0] (2024-05-04)
 
 
