@@ -19,6 +19,25 @@ jobs:
           app_id: ${{ secrets.TOKEN_APP_ID }}
           private_key: ${{ secrets.TOKEN_APP_SECRET }}
       - uses: google-github-actions/release-please-action@v4
+        id: release-please
         with:
           token: ${{ steps.generate-token.outputs.token }}
-          release-type: node
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+      - uses: actions/checkout@v4
+        if: ${{ steps.release-please.outputs.pr }}
+        with:
+          ref: ${{ fromJson(steps.release-please.outputs.pr).headBranchName }}
+          token: ${{ steps.generate-token.outputs.token }}
+      - name: Generate mod changelog
+        uses: sguest/release-please-factorio-changelog@main
+        if: ${{ steps.release-please.outputs.pr }}
+        with:
+          output-file: ${{ github.workspace }}/public/changelog.txt
+      - name: Commit changelog
+        if: ${{ steps.release-please.outputs.pr }}
+        run: |
+          git config --global user.name sguest-app-token-generator
+          git config --global user.email sguest-app-token-generator@github.com
+          git commit -am "chore: updated changelog.txt"
+          git push

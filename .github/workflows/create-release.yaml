@@ -2,6 +2,11 @@ name: Create Release and Publish to Mod Portal
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.release-please-manifest.json'
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -38,10 +43,10 @@ jobs:
           tag: v${{ steps.mod_version.outputs.value }}
           name: v${{ steps.mod_version.outputs.value }}
           body: Simple Seablock release v${{ steps.mod_version.outputs.value }}
-      - name: Publish to Mod Portal
-        uses: mchangrh/factorio-mod-upload@v1
-        with:
-          mod-name: SimpleSeablock
-        env:
-          FACTORIO_MODS_TOKEN: ${{ secrets.FACTORIO_API_TOKEN }}
-          FILENAME: ./SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip
+      # - name: Publish to Mod Portal
+      #   uses: mchangrh/factorio-mod-upload@v1
+      #   with:
+      #     mod-name: SimpleSeablock
+      #   env:
+      #     FACTORIO_MODS_TOKEN: ${{ secrets.FACTORIO_API_TOKEN }}
+      #     FILENAME: ./SimpleSeablock_${{ steps.mod_version.outputs.value }}.zip
