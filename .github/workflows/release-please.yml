@@ -66,3 +66,10 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run:
           gh release upload ${{ steps.release-please.outputs.tag_name }} ${{ github.workspace }}/SimpleSeablock_${{ steps.release-please.outputs.major }}.${{ steps.release-please.outputs.minor }}.${{ steps.release-please.outputs.patch }}.zip
+      - name: Publish to Mod Portal
+        uses: mchangrh/factorio-mod-upload@v1
+        with:
+          mod-name: SimpleSeablock
+        env:
+          FACTORIO_MODS_TOKEN: ${{ secrets.FACTORIO_API_TOKEN }}
+          FILENAME: ./SimpleSeablock_${{ steps.release-please.outputs.major }}.${{ steps.release-please.outputs.minor }}.${{ steps.release-please.outputs.patch }}.zip
